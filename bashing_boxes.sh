@@ -10,9 +10,11 @@ echo "Type 2 if you would like to see the options to add"
 echo "Type 3 if you would like to see the options to remove"
 echo "..Or just type X to leave"
 
-read choice
 
 while true; do
+
+read choice
+	
 	if [ "$choice" == "1" ]; then
 		echo " "
 		echo "You have chosen to view items"
