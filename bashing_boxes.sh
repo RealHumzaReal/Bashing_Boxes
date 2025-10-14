@@ -25,4 +25,8 @@ elsif $choice == "2" then
 	echo "Type 2 if you want to add an item to the end of the list"
 	echo "Type 3 if you just want to go back"
 elsif $choice == "3" then
-	
+	echo " "
+	echo "Type 1 if you want to remove an item on a certain position on the list"
+	echo "Type 2 if you want to remove the last item on the list"
+	echo "Type 3 if you just want to go back"
+fi
