@@ -14,7 +14,7 @@ echo "..Or just type X to leave"
 while true; do
 
 read choice
-	
+
 	if [ "$choice" == "1" ]; then
 		echo " "
 		echo "You have chosen to view items"
@@ -36,8 +36,8 @@ read choice
 		echo "Type 1 if you want to remove an item on a certain position on the list"
 		echo "Type 2 if you want to remove the last item on the list"
 		echo "Type 3 if you just want to go back"
-		break
 		read choiceremove
+		break
 	elif [[ "$choice" == "X" || "$choice" == "x" ]]; then
 		echo " "
 		echo "You have chosen to exit, goodbye!"
