@@ -22,6 +22,13 @@ read choice
 		echo "Type 2 if you want to view a item in a specific position"
 		echo "Type 3 if you just want to go back"
 		read choiceview
+		if [ "$choiceview" == "1" ]; then
+			echo "you have chosen to view all items"
+			echo "$objects"
+		elif [ "$choiceview" == "2" ]; then
+			echo "You have chosen to view a specific item, what is it"
+			read newitem
+		fi
 		break
 	elif [ "$choice" == "2" ]; then
 		echo " "
