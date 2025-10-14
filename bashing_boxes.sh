@@ -30,3 +30,5 @@ elif [ "$choice" == "3" ]; then
 	echo "Type 2 if you want to remove the last item on the list"
 	echo "Type 3 if you just want to go back"
 fi
+
+#break
