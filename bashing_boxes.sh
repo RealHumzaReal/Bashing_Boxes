@@ -2,7 +2,7 @@
 # Faucet, Dump truk, Pinata, Robe, Hanger, Dumbel, Ketchup, Wallet, Pillow, Lotion
 echo "Welcome to the list of random items"
 
-objects={"Faucet","Dump truk","Pinata","Robe","Hanger","Dumbel","Ketchup","Wallet","Pillow","Lotion"}
+objects=("Faucet" "Dump truk" "Pinata" "Robe" "Hanger" "Dumbel" "Ketchup" "Wallet" "Pillow" "Lotion")
 
 echo " "
 echo "Type 1 if you would like to see the options to view"
