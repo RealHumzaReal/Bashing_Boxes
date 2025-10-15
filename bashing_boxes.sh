@@ -24,16 +24,14 @@ read choice
 		read choiceview
 		if [ "$choiceview" == "1" ]; then
 			echo "you have chosen to view all items"
-			echo "$objects"
+			echo "${objects[@]}"
 		elif [ "$choiceview" == "2" ]; then
-			read -p "You have chosen to view specific item at a position, please input a number between (0-$((${#my_array[@]} - 1 ))): " index
-			if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index < 0 || index >= ${#my_array[@]} )); then
+			read -p "You have chosen to view specific item at a position, please input a number between (0-$((${#objects[@]} - 1 ))): " index
+			if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index < 0 || index >= ${#objects[@]} )); then
 				echo "not valid pls try something in range"
 				exit
 			fi
-			echo "item is at index $index is: ${my_array[$index]}"
-
-echo "item is at index $index is: ${my_array[$index]}"
+			echo "item at index $index is: ${objects[$index]}"
 		fi
 		break
 	elif [ "$choice" == "2" ]; then
