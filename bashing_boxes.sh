@@ -13,7 +13,7 @@ echo "..Or just type X to leave"
 
 while true; do
 
-read choice
+	read choice
 
 	if [ "$choice" == "1" ]; then
 		echo " "
@@ -42,7 +42,7 @@ read choice
 		else
 			echo "Syntax error, your going to have to restart"
 		fi
-		sleep 5
+		sleep 1
 		echo " "
 		echo "Type 1 if you would like to see the options to view"
 		echo "Type 2 if you would like to see the options to add"
@@ -56,7 +56,20 @@ read choice
 		echo "Type 2 if you want to add an item to the end of the list"
 		echo "Type 3 if you just want to go back"
 		read choiceadd
-		break
+		if [ "$choiceadd" == "1" ];then
+			echo "You want to add an item somewhere on the list, where do you want to add it?"
+		elif [ "$choiceadd" == "2" ]; then
+			echo " You want to add an item to the last position on the list, what will it be?"
+			read +a objects
+			echo "You have added ${objects[@]}"
+		fi
+		sleep 1
+		echo " "
+		echo "Type 1 if you would like to see the options to view"
+		echo "Type 2 if you would like to see the options to add"
+		echo "Type 3 if you would like to see the options to remove"
+		echo "..Or just type X to leave"
+		continue
 	elif [ "$choice" == "3" ]; then
 		echo " "
 		echo "Type 1 if you want to remove an item on a certain position on the list"
