@@ -27,7 +27,8 @@ read choice
 			echo "$objects"
 		elif [ "$choiceview" == "2" ]; then
 			echo "You have chosen to view a specific item, what is it"
-			read newitem
+			read specifieditem
+			echo ${objects[@]}
 		fi
 		break
 	elif [ "$choice" == "2" ]; then
