@@ -26,12 +26,14 @@ read choice
 			echo "you have chosen to view all items"
 			echo "$objects"
 		elif [ "$choiceview" == "2" ]; then
-			echo "You have chosen to view a specific item, what is it"
-			while read line
-			do
-				objects=("${objects[@]}" $line)
-			done
-			echo "${objects[@]}"
+			read -p "You have chosen to view specific item at a position, please input a number between (0-$((${#my_array[@]} - 1 ))): " index
+			if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index < 0 || index >= ${#my_array[@]} )); then
+				echo "not valid pls try something in range"
+				exit
+			fi
+			echo "item is at index $index is: ${my_array[$index]}"
+
+echo "item is at index $index is: ${my_array[$index]}"
 		fi
 		break
 	elif [ "$choice" == "2" ]; then
