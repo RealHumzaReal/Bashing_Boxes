@@ -42,7 +42,13 @@ read choice
 		else
 			echo "Syntax error, your going to have to restart"
 		fi
-		break
+		sleep 5
+		echo " "
+		echo "Type 1 if you would like to see the options to view"
+		echo "Type 2 if you would like to see the options to add"
+		echo "Type 3 if you would like to see the options to remove"
+		echo "..Or just type X to leave"
+		continue
 	elif [ "$choice" == "2" ]; then
 		echo " "
 		echo "You have chosen to add an item"
