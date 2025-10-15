@@ -27,8 +27,11 @@ read choice
 			echo "$objects"
 		elif [ "$choiceview" == "2" ]; then
 			echo "You have chosen to view a specific item, what is it"
-			read specifieditem
-			echo ${objects[@]}
+			while read line
+			do
+				objects=("${objects[@]}" $line)
+			done
+			echo "${objects[@]}"
 		fi
 		break
 	elif [ "$choice" == "2" ]; then
