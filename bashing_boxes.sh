@@ -4,15 +4,14 @@ echo "Welcome to the list of random items"
 
 objects=("Faucet" "Dump truk" "Pinata" "Robe" "Hanger" "Dumbel" "Ketchup" "Wallet" "Pillow" "Lotion")
 
-echo " "
-echo "Type 1 if you would like to see the options to view"
-echo "Type 2 if you would like to see the options to add"
-echo "Type 3 if you would like to see the options to remove"
-echo "..Or just type X to leave"
-
 
 while true; do
 
+	echo " "
+	echo "Type 1 if you would like to see the options to view"
+	echo "Type 2 if you would like to see the options to add"
+	echo "Type 3 if you would like to see the options to remove"
+	echo "..Or just type X to leave"
 	read choice
 
 	if [ "$choice" == "1" ]; then
@@ -33,21 +32,11 @@ while true; do
 			fi
 			echo "item at index $index is: ${objects[$index]}"
 		elif [ "$choiceview" == "3" ]; then
-			echo " "
-			echo "Type 1 if you would like to see the options to view"
-			echo "Type 2 if you would like to see the options to add"
-			echo "Type 3 if you would like to see the options to remove"
-			echo "..Or just type X to leave"
 			continue
 		else
 			echo "Syntax error, your going to have to restart"
 		fi
 		sleep 1
-		echo " "
-		echo "Type 1 if you would like to see the options to view"
-		echo "Type 2 if you would like to see the options to add"
-		echo "Type 3 if you would like to see the options to remove"
-		echo "..Or just type X to leave"
 		continue
 	elif [ "$choice" == "2" ]; then
 		echo " "
@@ -60,15 +49,10 @@ while true; do
 			echo "You want to add an item somewhere on the list, where do you want to add it?"
 		elif [ "$choiceadd" == "2" ]; then
 			echo " You want to add an item to the last position on the list, what will it be?"
-			read +a objects
+			read -a objects
 			echo "You have added ${objects[@]}"
 		fi
 		sleep 1
-		echo " "
-		echo "Type 1 if you would like to see the options to view"
-		echo "Type 2 if you would like to see the options to add"
-		echo "Type 3 if you would like to see the options to remove"
-		echo "..Or just type X to leave"
 		continue
 	elif [ "$choice" == "3" ]; then
 		echo " "
