@@ -52,6 +52,11 @@ while true; do
 			read newobject
 			objects+=( "$newobject" )
 			echo "You have added ${objects[@]}"
+		elif [ "$choiceview" == "3" ]; then
+			continue
+		else
+			echo "Syntax erorr, your going to have to restart"
+			continue
 		fi
 		sleep 1
 		continue
