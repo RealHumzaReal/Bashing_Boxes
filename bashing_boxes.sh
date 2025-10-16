@@ -88,10 +88,13 @@ while true; do
 		read choiceremove
 		if [ "$choiceremove" == "1" ]; then
 			read -p "You have chosen to remove and item from the list, pick a number between (0-$((${#objects[@]} - 1))  ): " removalnumber
-			if ! [[ "$removalnumber" =~ ^[0-9]+$ ]] || (( removalnumber < 0 || removalnumber < ${#objects[@]} )); then
+			if ! [[ "$removalnumber" =~ ^[0-9]+$ ]] || (( removalnumber < 0 || removalnumber >= ${#objects[@]} )); then
 				echo "Syntax error, your going to have to restart"
 				continue
-			fi			
+			fi	
+			objects+=($removalnumber)
+			echo "Object has succesfully been removed"
+		fi	
 	elif [[ "$choice" == "X" || "$choice" == "x" ]]; then
 		echo " "
 		echo "You have chosen to exit, goodbye!"
