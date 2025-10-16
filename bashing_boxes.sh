@@ -48,8 +48,9 @@ while true; do
 		if [ "$choiceadd" == "1" ];then
 			echo "You want to add an item somewhere on the list, where do you want to add it?"
 		elif [ "$choiceadd" == "2" ]; then
-			echo " You want to add an item to the last position on the list, what will it be?"
-			read -a objects
+			echo "You want to add an item to the last position on the list, what will it be?"
+			read newobject
+			objects+=( "$newobject" )
 			echo "You have added ${objects[@]}"
 		fi
 		sleep 1
