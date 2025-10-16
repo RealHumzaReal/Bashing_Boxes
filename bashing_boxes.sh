@@ -27,7 +27,7 @@ while true; do
 		elif [ "$choiceview" == "2" ]; then
 			read -p "You have chosen to view specific item at a position, please input a number between (0-$((${#objects[@]} - 1 ))): " index
 			if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index < 0 || index >= ${#objects[@]} )); then
-				echo "not valid pls try something in range"
+				echo "Number not in range"
 				exit
 			fi
 			echo "item at index $index is: ${objects[$index]}"
@@ -36,7 +36,7 @@ while true; do
 		else
 			echo "Syntax error, your going to have to restart"
 		fi
-		sleep 1
+		sleep 2
 		continue
 	elif [ "$choice" == "2" ]; then
 		echo " "
@@ -46,7 +46,14 @@ while true; do
 		echo "Type 3 if you just want to go back"
 		read choiceadd
 		if [ "$choiceadd" == "1" ];then
-			echo "You want to add an item somewhere on the list, where do you want to add it?"
+			read -p "You want to add an item somewhere on the list, where do you want to add it (0-$((${#objects[@]} - 1 ))): " number
+			if ! [[ "$number" =~ ^[0-9]+$ ]] || (( number < 0 || number >= ${#objects[@]} )); then
+				echo "that number isnt in range"
+				exit
+			fi
+			echo "You have chosen $number as the position, what would you like to call this object?"
+			read addedobject
+			
 		elif [ "$choiceadd" == "2" ]; then
 			echo "You want to add an item to the last position on the list, what will it be?"
 			read newobject
@@ -58,7 +65,7 @@ while true; do
 			echo "Syntax erorr, your going to have to restart"
 			continue
 		fi
-		sleep 1
+		sleep 2
 		continue
 	elif [ "$choice" == "3" ]; then
 		echo " "
