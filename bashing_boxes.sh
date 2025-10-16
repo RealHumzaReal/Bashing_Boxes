@@ -86,13 +86,13 @@ while true; do
 		echo "Type 2 if you want to remove the last item on the list"
 		echo "Type 3 if you just want to go back"
 		read choiceremove
-		break
+		if [ "$choiceremove" == "1" ]
 
 	elif [[ "$choice" == "X" || "$choice" == "x" ]]; then
 		echo " "
 		echo "You have chosen to exit, goodbye!"
 		break
-		
+
 	else
 		echo "Syntax error, please try again"
 		continue
