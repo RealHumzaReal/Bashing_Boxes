@@ -21,9 +21,11 @@ while true; do
 		echo "Type 2 if you want to view a item in a specific position"
 		echo "Type 3 if you just want to go back"
 		read choiceview
+
 		if [ "$choiceview" == "1" ]; then
 			echo "you have chosen to view all items"
 			echo "${objects[@]}"
+
 		elif [ "$choiceview" == "2" ]; then
 			read -p "You have chosen to view specific item at a position, please input a number between (0-$((${#objects[@]} - 1 ))): " index
 			if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index < 0 || index >= ${#objects[@]} )); then
@@ -31,13 +33,17 @@ while true; do
 				exit
 			fi
 			echo "item at index $index is: ${objects[$index]}"
+
 		elif [ "$choiceview" == "3" ]; then
 			continue
+
 		else
 			echo "Syntax error, your going to have to restart"
+
 		fi
 		sleep 2
 		continue
+
 	elif [ "$choice" == "2" ]; then
 		echo " "
 		echo "You have chosen to add an item"
@@ -45,6 +51,7 @@ while true; do
 		echo "Type 2 if you want to add an item to the end of the list"
 		echo "Type 3 if you just want to go back"
 		read choiceadd
+
 		if [ "$choiceadd" == "1" ];then
 			read -p "You want to add an item somewhere on the list, where do you want to add it (0-$((${#objects[@]} - 1 ))): " number
 			if ! [[ "$number" =~ ^[0-9]+$ ]] || (( number < 0 || number >= ${#objects[@]} )); then
@@ -53,20 +60,26 @@ while true; do
 			fi
 			echo "You have chosen $number as the position, what would you like to call this object?"
 			read addedobject
-			
+			echo "You have added $addedobject to $number."
+			objects=( "${objects[@]:0:$number}"  "$addedobject" "${objects[@]:$number}")
+
 		elif [ "$choiceadd" == "2" ]; then
 			echo "You want to add an item to the last position on the list, what will it be?"
 			read newobject
 			objects+=( "$newobject" )
 			echo "You have added ${objects[@]}"
+
 		elif [ "$choiceview" == "3" ]; then
 			continue
+
 		else
 			echo "Syntax erorr, your going to have to restart"
 			continue
+
 		fi
 		sleep 2
 		continue
+
 	elif [ "$choice" == "3" ]; then
 		echo " "
 		echo "Type 1 if you want to remove an item on a certain position on the list"
@@ -74,10 +87,12 @@ while true; do
 		echo "Type 3 if you just want to go back"
 		read choiceremove
 		break
+
 	elif [[ "$choice" == "X" || "$choice" == "x" ]]; then
 		echo " "
 		echo "You have chosen to exit, goodbye!"
 		break
+		
 	else
 		echo "Syntax error, please try again"
 		continue
