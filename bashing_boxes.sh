@@ -74,7 +74,6 @@ while true; do
 
 		else
 			echo "Syntax erorr, your going to have to restart"
-			continue
 
 		fi
 		sleep 2
@@ -83,18 +82,26 @@ while true; do
 	elif [ "$choice" == "3" ]; then
 		echo " "
 		echo "Type 1 if you want to remove an item on a certain position on the list"
-		echo "Type 2 if you want to remove the last item on the list"
+		echo "Type 2 if you want to remove the first item on the list"
 		echo "Type 3 if you just want to go back"
 		read choiceremove
 		if [ "$choiceremove" == "1" ]; then
-			read -p "You have chosen to remove and item from the list, pick a number between (0-$((${#objects[@]} - 1))  ): " removalnumber
+			read -p "You have chosen to remove and item from the list, pick a number between (0-$((${#objects[@]} - 1))): " removalnumber
 			if ! [[ "$removalnumber" =~ ^[0-9]+$ ]] || (( removalnumber < 0 || removalnumber >= ${#objects[@]} )); then
 				echo "Syntax error, your going to have to restart"
 				continue
 			fi	
-			objects+=($removalnumber)
+			unset objects[$removalnumber]
 			echo "Object has succesfully been removed"
-		fi	
+		elif [ "$choiceremove" == 2 ]; then
+			unset objects[0]
+			echo " "
+			echo "Random item has been removed!"
+		else
+			echo "Syntax error, you will have to restart"
+		fi
+		sleep 2
+		continue
 	elif [[ "$choice" == "X" || "$choice" == "x" ]]; then
 		echo " "
 		echo "You have chosen to exit, goodbye!"
