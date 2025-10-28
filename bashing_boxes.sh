@@ -51,7 +51,6 @@ while true; do
 		fi
 		sleep 2
 		continue
-
 	elif [ "$choice" == "2" ]; then
 		echo " "
 		echo "You have chosen to add an item"
@@ -86,7 +85,6 @@ while true; do
 		fi
 		sleep 2
 		continue
-
 	elif [ "$choice" == "3" ]; then
 		echo " "
 		echo "Type 1 if you want to remove an item on a certain position on the list"
@@ -105,6 +103,8 @@ while true; do
 			unset objects[0]
 			echo " "
 			echo "First item has been removed!"
+		elif [ "$choiceremove" == 3 ]; then
+			continue
 		else
 			echo "Syntax error, you will have to restart"
 		fi
@@ -114,21 +114,21 @@ while true; do
 		echo " "
 		echo "You have chosen to exit, goodbye!"
 		break
-	elif [[ "$choice" == "4" ]]; then
+	elif [ "$choice" == "4" ]; then
 		echo "you have chosen to load a previous save/create a new save!"
 		echo "Type 1 if you would like to create a save"
 		echo "Type 2 if you would like to load a previous save"
 		echo "Type 3 if you would like to overwrite a previous save"
 		echo "Type 4 if you would like to go back"
 		read choicesave
-		if [[ "$choicesave" == "1" ]]; then
-
+		if [ "$choicesave" == "1" ]; then
+			read objects
 			echo "Congrats a new save has been made!"
-		elif [[ "$choicesave" == "2" ]]; then
+		elif [ "$choicesave" == "2" ]; then
 			echo "What save would you like to load? Here are your options:"
-		elif [[ "$choicesave" == "3" ]]; then
+		elif [ "$choicesave" == "3" ]; then
 			echo "What save would you like to overwrite? Here are your options:"
-		elif [[ "$choicesave" == "4" ]]; then
+		elif [ "$choicesave" == "4" ]; then
 			continue
 		else
 			echo "Syntax error, your going to have to restart!"
