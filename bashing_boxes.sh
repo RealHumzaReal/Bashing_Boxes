@@ -11,6 +11,7 @@ while true; do
 	echo "Type 1 if you would like to see the options to view"
 	echo "Type 2 if you would like to see the options to add"
 	echo "Type 3 if you would like to see the options to remove"
+	echo "Type 4 if you would like to save"
 	echo "..Or just type X to leave"
 	read choice
 
@@ -96,7 +97,7 @@ while true; do
 		elif [ "$choiceremove" == 2 ]; then
 			unset objects[0]
 			echo " "
-			echo "Random item has been removed!"
+			echo "First item has been removed!"
 		else
 			echo "Syntax error, you will have to restart"
 		fi
@@ -111,4 +112,6 @@ while true; do
 		echo "Syntax error, please try again"
 		continue
 	fi
+elif [[ "$choice" == "4" ]]; then
+	echo "you have chosen to save your progress!"
 done
