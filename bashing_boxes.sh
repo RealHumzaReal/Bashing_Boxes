@@ -2,10 +2,23 @@
 # Faucet, Dump truk, Pinata, Robe, Hanger, Dumbel, Ketchup, Wallet, Pillow, Lotion
 echo "Welcome to the list of random items"
 
-objects=("Faucet" "Dump truk" "Pinata" "Robe" "Hanger" "Dumbel" "Ketchup" "Wallet" "Pillow" "Lotion")
+viewallitems() {
+echo "you have chosen to view all items"
+echo "${objects[@]}"
+}
+viewitematposition() {
+read -p "You have chosen to view specific item at a position, please input a number between (0-$((${#objects[@]} - 1 ))): " index
+if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index < 0 || index >= ${#objects[@]} )); then
+	echo "Number not in range"
+	exit
+fi
+echo "item at index $index is: ${objects[$index]}"
+}
 
 
 while true; do
+
+	objects=("Faucet" "Dump truk" "Pinata" "Robe" "Hanger" "Dumbel" "Ketchup" "Wallet" "Pillow" "Lotion")
 
 	echo " "
 	echo "Type 1 if you would like to see the options to view"
@@ -24,16 +37,10 @@ while true; do
 		read choiceview
 
 		if [ "$choiceview" == "1" ]; then
-			echo "you have chosen to view all items"
-			echo "${objects[@]}"
+			viewallitems
 
 		elif [ "$choiceview" == "2" ]; then
-			read -p "You have chosen to view specific item at a position, please input a number between (0-$((${#objects[@]} - 1 ))): " index
-			if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index < 0 || index >= ${#objects[@]} )); then
-				echo "Number not in range"
-				exit
-			fi
-			echo "item at index $index is: ${objects[$index]}"
+			viewitematposition
 
 		elif [ "$choiceview" == "3" ]; then
 			continue
@@ -107,27 +114,27 @@ while true; do
 		echo " "
 		echo "You have chosen to exit, goodbye!"
 		break
+	elif [[ "$choice" == "4" ]]; then
+		echo "you have chosen to load a previous save/create a new save!"
+		echo "Type 1 if you would like to create a save"
+		echo "Type 2 if you would like to load a previous save"
+		echo "Type 3 if you would like to overwrite a previous save"
+		echo "Type 4 if you would like to go back"
+		read choicesave
+		if [[ "$choicesave" == "1" ]]; then
 
+			echo "Congrats a new save has been made!"
+		elif [[ "$choicesave" == "2" ]]; then
+			echo "What save would you like to load? Here are your options:"
+		elif [[ "$choicesave" == "3" ]]; then
+			echo "What save would you like to overwrite? Here are your options:"
+		elif [[ "$choicesave" == "4" ]]; then
+			continue
+		else
+			echo "Syntax error, your going to have to restart!"
+		fi
 	else
 		echo "Syntax error, please try again"
 		continue
-	fi
-elif [[ "$choice" == "4" ]]; then
-	echo "you have chosen to load a previous save/create a new save!"
-	echo "Type 1 if you would like to create a save"
-	echo "Type 2 if you would like to load a previous save"
-	echo "Type 3 if you would like to overwrite a previous save"
-	echo "Type 4 if you would like to go back"
-	read choicesave
-	if [[ "$choicesave" == "1" ]]; then
-		echo "Congrats a new save has been made!"
-	elif [[ "$choicesave" == "2" ]]; then
-		echo "What save would you like to load? Here are your options:"
-	elif [[ "$choicesave" == "3" ]]; then
-		echo "What save would you like to overwrite? Here are your options:"
-	elif [[ "$choicesave" == "4" ]]; then
-		continue
-	else
-		echo "Syntax error, your going to have to restart!"
 	fi
 done
