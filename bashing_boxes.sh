@@ -11,7 +11,7 @@ while true; do
 	echo "Type 1 if you would like to see the options to view"
 	echo "Type 2 if you would like to see the options to add"
 	echo "Type 3 if you would like to see the options to remove"
-	echo "Type 4 if you would like to save"
+	echo "Type 4 if you would like to load a previous save or create a new save"
 	echo "..Or just type X to leave"
 	read choice
 
@@ -113,5 +113,21 @@ while true; do
 		continue
 	fi
 elif [[ "$choice" == "4" ]]; then
-	echo "you have chosen to save your progress!"
+	echo "you have chosen to load a previous save/create a new save!"
+	echo "Type 1 if you would like to create a save"
+	echo "Type 2 if you would like to load a previous save"
+	echo "Type 3 if you would like to overwrite a previous save"
+	echo "Type 4 if you would like to go back"
+	read choicesave
+	if [[ "$choicesave" == "1" ]]; then
+		echo "Congrats a new save has been made!"
+	elif [[ "$choicesave" == "2" ]]; then
+		echo "What save would you like to load? Here are your options:"
+	elif [[ "$choicesave" == "3" ]]; then
+		echo "What save would you like to overwrite? Here are your options:"
+	elif [[ "$choicesave" == "4" ]]; then
+		continue
+	else
+		echo "Syntax error, your going to have to restart!"
+	fi
 done
