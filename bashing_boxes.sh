@@ -2,11 +2,13 @@
 # Faucet, Dump truk, Pinata, Robe, Hanger, Dumbel, Ketchup, Wallet, Pillow, Lotion
 echo "Welcome to the list of random items"
 
-viewallitems() {
+path="/home/gamerwolf4512/Bashing_Boxes/data"
+
+viewallitems1() {
 echo "you have chosen to view all items"
 echo "${objects[@]}"
 }
-viewitematposition() {
+viewitematposition1() {
 read -p "You have chosen to view specific item at a position, please input a number between (0-$((${#objects[@]} - 1 ))): " index
 if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index < 0 || index >= ${#objects[@]} )); then
 	echo "Number not in range"
@@ -14,12 +16,31 @@ if ! [[ "$index" =~ ^[0-9]+$ ]] || (( index < 0 || index >= ${#objects[@]} )); t
 fi
 echo "item at index $index is: ${objects[$index]}"
 }
+listseprately4() {
+for e in "${objects[@]}"; do
+	echo $e
+done
+
+}
+findfiletomake4() {
+file="load"
+extension="txt"
+filename=$path/"${file}.${extension}"
+
+count=1
+while [[ -f "$filename" ]]; do
+	count=$(( count + 1 ))
+	filename=$path/"${file}${count}.${extension}"
+done
+touch $filename
+}
+
+objects=("Faucet" "Dump truk" "Pinata" "Robe" "Hanger" "Dumbel" "Ketchup" "Wallet" "Pillow" "Lotion")
 
 
 while true; do
 
-	objects=("Faucet" "Dump truk" "Pinata" "Robe" "Hanger" "Dumbel" "Ketchup" "Wallet" "Pillow" "Lotion")
-
+	
 	echo " "
 	echo "Type 1 if you would like to see the options to view"
 	echo "Type 2 if you would like to see the options to add"
@@ -37,10 +58,10 @@ while true; do
 		read choiceview
 
 		if [ "$choiceview" == "1" ]; then
-			viewallitems
+			viewallitems1
 
 		elif [ "$choiceview" == "2" ]; then
-			viewitematposition
+			viewitematposition1
 
 		elif [ "$choiceview" == "3" ]; then
 			continue
@@ -122,10 +143,14 @@ while true; do
 		echo "Type 4 if you would like to go back"
 		read choicesave
 		if [ "$choicesave" == "1" ]; then
-			read objects
+			findfiletomake4
+			RecentFile=$(find "$path" -maxdepth 1 -type f -printf "%T@ %p\n" | sort -nr | head -n 1 | cut -d' ' -f2-)
+			listseprately4 > $RecentFile
 			echo "Congrats a new save has been made!"
 		elif [ "$choicesave" == "2" ]; then
 			echo "What save would you like to load? Here are your options:"
+			showfiles=$(ls $path)
+			echo "$showfiles"
 		elif [ "$choicesave" == "3" ]; then
 			echo "What save would you like to overwrite? Here are your options:"
 		elif [ "$choicesave" == "4" ]; then
