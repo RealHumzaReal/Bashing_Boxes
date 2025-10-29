@@ -33,6 +33,7 @@ while [[ -f "$filename" ]]; do
 	filename=$path/"${file}${count}.${extension}"
 done
 touch $filename
+listseprately4 > $filename
 }
 
 objects=("Faucet" "Dump truk" "Pinata" "Robe" "Hanger" "Dumbel" "Ketchup" "Wallet" "Pillow" "Lotion")
@@ -144,13 +145,12 @@ while true; do
 		read choicesave
 		if [ "$choicesave" == "1" ]; then
 			findfiletomake4
-			RecentFile=$(find "$path" -maxdepth 1 -type f -printf "%T@ %p\n" | sort -nr | head -n 1 | cut -d' ' -f2-)
-			listseprately4 > $RecentFile
 			echo "Congrats a new save has been made!"
 		elif [ "$choicesave" == "2" ]; then
 			echo "What save would you like to load? Here are your options:"
 			showfiles=$(ls $path)
-			echo "$showfiles"
+			echo -e "$showfiles"
+			read loadoption
 		elif [ "$choicesave" == "3" ]; then
 			echo "What save would you like to overwrite? Here are your options:"
 		elif [ "$choicesave" == "4" ]; then
