@@ -24,7 +24,7 @@ done
 }
 findfiletomake4() {
 file="load"
-extension="txt"
+extension="sh"
 filename=$path/"${file}.${extension}"
 
 count=1
@@ -33,7 +33,7 @@ while [[ -f "$filename" ]]; do
 	filename=$path/"${file}${count}.${extension}"
 done
 touch $filename
-listseprately4 > $filename
+declare -p objects > $filename
 }
 
 objects=("Faucet" "Dump truk" "Pinata" "Robe" "Hanger" "Dumbel" "Ketchup" "Wallet" "Pillow" "Lotion")
@@ -150,9 +150,27 @@ while true; do
 			echo "What save would you like to load? Here are your options:"
 			showfiles=$(ls $path)
 			echo -e "$showfiles"
+			echo "Type in the number of the save file! "
 			read loadoption
+			if [[ -e $path/load$loadoption.sh ]]; then
+				echo "Loading save file"
+				source $path/load$loadoption.sh
+				echo "Succesfully loaded file"
+			else
+				echo "Save file does not exist"
+			fi
 		elif [ "$choicesave" == "3" ]; then
 			echo "What save would you like to overwrite? Here are your options:"
+			echo -e "$showfiles"
+			echo "Type in the number to overwrite the save file!"
+			read overwrite
+			if [[ -e $path/load$overwrite.sh ]]; then
+				echo "Overwriting.."
+				 declare -p objects > $path/load$overwrite.sh
+				echo "Save file has been overwritten!"
+			else
+				echo "Save file does not exist"
+			fi
 		elif [ "$choicesave" == "4" ]; then
 			continue
 		else
