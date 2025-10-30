@@ -34,6 +34,8 @@ while [[ -f "$filename" ]]; do
 done
 touch $filename
 declare -p objects > $filename
+
+echo "Saved new file, file name is $filename"
 }
 
 objects=("Faucet" "Dump truk" "Pinata" "Robe" "Hanger" "Dumbel" "Ketchup" "Wallet" "Pillow" "Lotion")
@@ -134,14 +136,25 @@ while true; do
 		continue
 	elif [[ "$choice" == "X" || "$choice" == "x" ]]; then
 		echo " "
-		echo "You have chosen to exit, goodbye!"
-		break
+		echo "You have chosen to exit, would you like to save your progress before leaving? (y/n)"
+		read savebeforeleave
+		if [[ "$savebeforeleave" == "y" || "$savebeforeleave" == "Y" ]]; then
+			echo "Saving before exiting.."
+			findfiletomake4
+			break
+		elif [[ "$savebeforeleave" == "n" || "$savebeforeleave" == "N" ]]; then
+			echo "okay goodbye"
+			break
+		else
+			echo "syntax error brahhh, try again"
+		fi
 	elif [ "$choice" == "4" ]; then
 		echo "you have chosen to load a previous save/create a new save!"
 		echo "Type 1 if you would like to create a save"
 		echo "Type 2 if you would like to load a previous save"
 		echo "Type 3 if you would like to overwrite a previous save"
-		echo "Type 4 if you would like to go back"
+		echo "Type 4 if you would like to remove a save/saves"
+		echo "Type 5 if you would like to go back"
 		read choicesave
 		if [ "$choicesave" == "1" ]; then
 			findfiletomake4
@@ -172,6 +185,18 @@ while true; do
 				echo "Save file does not exist"
 			fi
 		elif [ "$choicesave" == "4" ]; then
+			echo "You have chosen to remove a save/saves"
+			echo "Type 1 if you would like to remove a save"
+			echo "Type 2 if you would like to get rid of all saves"
+			read removesave
+			if [ "$removesave" == "1" ]; then
+				echo "What save would you like to remove?"
+			elif [ "$removesave" == "2" ]; then
+				echo "Removing all saves"
+			else
+				echo "Syntax error, your going to have to restart"
+			fi
+		elif [ "choicesave" == "5" ]; then
 			continue
 		else
 			echo "Syntax error, your going to have to restart!"
